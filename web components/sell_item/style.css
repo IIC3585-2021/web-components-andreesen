@@ -1,0 +1,49 @@
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: left;
+  font-family: arial;
+  border-style: solid;
+  border-color: grey;
+  padding-bottom: 10px;
+  border-width: thin;
+}
+
+.image {
+  height: 100%;
+  width: 100%;
+}
+
+.item-name {
+  margin-left: 10px;
+  color: grey;
+  margin-bottom: 5px;
+}
+
+.price {
+  color: grey;
+  font-size: 15px;
+  text-decoration: line-through;
+}
+
+.discount-price {
+  margin-left: 10px;
+  font-size: 25px;
+  font-style: bold;
+  color: blue;
+}
+
+.label {
+  margin-left: 10px;
+  font-size: 15px;
+}
+
+.discount {
+  float: right;
+  margin-right: 10px;
+  padding: 3px;
+  background-color: magenta;
+  border-radius: 20%;
+  color: white;
+}
