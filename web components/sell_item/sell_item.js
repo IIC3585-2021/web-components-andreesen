@@ -17,10 +17,10 @@ templateSellItem.innerHTML = `
         <div>
             <span class="label"> Normal:  </span>
             <span class="price">
-            Precio
-        </span>
-        <div class='stars'>
-        </div>
+                Precio
+            </span>
+            <div class='stars'>
+            </div>
         
         </div>
 
@@ -61,13 +61,13 @@ class SellItem extends HTMLElement {
             this.shadowRoot.querySelector('.price').innerHTML = ``
             this.shadowRoot.querySelector('.discount-price').innerHTML = `$${this.price}`
         }
+        this.shadowRoot.querySelector(".stars").innerHTML = ``;
         for (var i = 0; i < this.valoration; i++) {
             const star = document.createElement('img')
             star.src = 'star.svg'
             star.setAttribute('class', 'star')
             this.shadowRoot.querySelector('.stars').appendChild(star)
         }
-        //this.shadowRoot.querySelector('.stars').innerHTML = `(${this.valoration})`
     }
     
     attributeChangedCallback(attr, oldValue, newValue) {
@@ -103,7 +103,7 @@ class SellItem extends HTMLElement {
         }
         else if (attr == 'valoration') {
             this.valoration = newValue
-            this.shadowRoot.querySelector('.stars').innerHTML = `$${this.price}`
+            this.shadowRoot.querySelector(".stars").innerHTML = ``;
             for (var i = 0; i < this.valoration; i++) {
               const star = document.createElement("img");
               star.src = "star.svg";
