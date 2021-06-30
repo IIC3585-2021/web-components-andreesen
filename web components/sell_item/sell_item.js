@@ -19,6 +19,9 @@ templateSellItem.innerHTML = `
             <span class="price">
             Precio
         </span>
+        <div class='stars'>
+        </div>
+        
         </div>
 
     </div>
@@ -31,6 +34,7 @@ class SellItem extends HTMLElement {
         this.price
         this.discount = 0
         this.image;
+        this.valoration = 0
         const shadowRoot = this.attachShadow({ mode: 'open' })
 
         shadowRoot.appendChild(templateSellItem.content.cloneNode(true));
@@ -57,6 +61,13 @@ class SellItem extends HTMLElement {
             this.shadowRoot.querySelector('.price').innerHTML = ``
             this.shadowRoot.querySelector('.discount-price').innerHTML = `$${this.price}`
         }
+        for (var i = 0; i < this.valoration; i++) {
+            const star = document.createElement('img')
+            star.src = 'star.svg'
+            star.setAttribute('class', 'star')
+            this.shadowRoot.querySelector('.stars').appendChild(star)
+        }
+        //this.shadowRoot.querySelector('.stars').innerHTML = `(${this.valoration})`
     }
     
     attributeChangedCallback(attr, oldValue, newValue) {
@@ -89,12 +100,21 @@ class SellItem extends HTMLElement {
         else if (attr == 'image') {
             this.image = newValue
             this.shadowRoot.querySelector('.image').src = this.image
-
+        }
+        else if (attr == 'valoration') {
+            this.valoration = newValue
+            this.shadowRoot.querySelector('.stars').innerHTML = `$${this.price}`
+            for (var i = 0; i < this.valoration; i++) {
+              const star = document.createElement("img");
+              star.src = "star.svg";
+              star.setAttribute("class", "star");
+              this.shadowRoot.querySelector(".stars").appendChild(star);
+            }
         }
     }
 
     static get observedAttributes() {
-        return ['item_name', 'price', 'discount', 'image']
+        return ['item_name', 'price', 'discount', 'image', 'valoration']
     }
 
 

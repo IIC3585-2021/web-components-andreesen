@@ -48,3 +48,14 @@
   border-radius: 20%;
   color: white;
 }
+
+.star {
+  height: 15px;
+  width: 15px;
+  margin-left: 5px;
+}
+
+.star-label {
+  margin-right: 10px;
+  padding: 3px;
+}
