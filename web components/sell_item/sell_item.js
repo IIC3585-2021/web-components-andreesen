@@ -31,7 +31,7 @@ class SellItem extends HTMLElement {
     constructor() {
         super()
         this.attrName;
-        this.price
+        this.price = 0
         this.discount = 0
         this.image;
         this.valoration = 0
@@ -50,16 +50,16 @@ class SellItem extends HTMLElement {
         this.shadowRoot.querySelector('.item-name').innerHTML = this.attrName
         if (this.discount > 0) {
             this.shadowRoot.querySelector(".label").innerHTML = `Normal: `;
-            this.shadowRoot.querySelector('.price').innerHTML = `$${this.price}`
+            this.shadowRoot.querySelector('.price').innerHTML = `$${this.price.toLocaleString("de-DE")}`
             this.shadowRoot.querySelector('.discount').innerHTML = `-${this.discount}%`
-            this.shadowRoot.querySelector('.discount-price').innerHTML = `$${(1 - this.discount / 100) * this.price}`
+            this.shadowRoot.querySelector('.discount-price').innerHTML = `$${((1 - this.discount / 100) * this.price).toLocaleString("de-DE")}`
             this.shadowRoot.querySelector(".discount").style.backgroundColor = "magenta";
         } else {
             this.shadowRoot.querySelector(".label").innerHTML = ``;
             this.shadowRoot.querySelector('.discount').innerHTML = ``
             this.shadowRoot.querySelector(".discount").style.backgroundColor = "white";
             this.shadowRoot.querySelector('.price').innerHTML = ``
-            this.shadowRoot.querySelector('.discount-price').innerHTML = `$${this.price}`
+            this.shadowRoot.querySelector('.discount-price').innerHTML = `$${this.price.toLocaleString("de-DE")}`
         }
         this.shadowRoot.querySelector(".stars").innerHTML = ``;
         for (var i = 0; i < this.valoration; i++) {
@@ -77,24 +77,24 @@ class SellItem extends HTMLElement {
         }
 
         else if (attr == 'price') {
-            this.price = newValue
-            this.shadowRoot.querySelector('.price').innerHTML = this.price
+            this.price = newValue.toLocaleString("de-DE");
+            this.shadowRoot.querySelector('.price').innerHTML = this.price.toLocaleString("de-DE")
         }
 
         else if (attr == 'discount') {
             this.discount = newValue
             if (this.discount > 0) {
                 this.shadowRoot.querySelector(".label").innerHTML = `Normal: `;
-                this.shadowRoot.querySelector('.price').innerHTML = `$${this.price}`
+                this.shadowRoot.querySelector('.price').innerHTML = `$${this.price.toLocaleString("de-DE")}`
                 this.shadowRoot.querySelector('.discount').innerHTML = `-${this.discount}%`
-                this.shadowRoot.querySelector('.discount-price').innerHTML = `$${(1 - this.discount / 100) * this.price}`
+                this.shadowRoot.querySelector('.discount-price').innerHTML = `$${((1 - this.discount / 100) * this.price).toLocaleString("de-DE")}`
                 this.shadowRoot.querySelector(".discount").style.backgroundColor = "magenta";
             } else {
                 this.shadowRoot.querySelector(".label").innerHTML = ``;
                 this.shadowRoot.querySelector('.discount').innerHTML = ``
                 this.shadowRoot.querySelector(".discount").style.backgroundColor = "white";
                 this.shadowRoot.querySelector('.price').innerHTML = ``
-                this.shadowRoot.querySelector('.discount-price').innerHTML = `$${this.price}`
+                this.shadowRoot.querySelector('.discount-price').innerHTML = `$${this.price.toLocaleString("de-DE")}`
             }
         }
         else if (attr == 'image') {
