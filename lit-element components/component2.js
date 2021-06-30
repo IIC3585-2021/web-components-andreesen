@@ -90,7 +90,6 @@ class ToDoList extends LitElement {
         const element = this.shadowRoot.querySelector('#input')
         const input = element.value
         if (input !== ""){
-            console.log("yeeeees")
             this.toDo = [...this.toDo, input]
             element.value = ""
         }

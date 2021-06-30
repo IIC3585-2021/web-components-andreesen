@@ -20,6 +20,7 @@ class SellItem extends LitElement {
             border-color: grey;
             padding-bottom: 10px;
             border-width: thin;
+            margin-bottom: 10px;
           }
           
           .image {
@@ -76,7 +77,8 @@ class SellItem extends LitElement {
         <p class="item-name">
             ${this.attrName}
         </p>
-        <div>
+        ${this.discount > 0 ?
+        html`<div>
         <span class="discount-price">
             $${((1 - this.discount / 100) * this.price).toLocaleString('de-DE')}
         </span>
@@ -89,8 +91,12 @@ class SellItem extends LitElement {
         <span class="price">
             $${this.price.toLocaleString('de-DE')}
         </span>
-        </div>
-        
+        </div>` :
+        html`<div>
+        <span class="discount-price">
+            $${this.price.toLocaleString('de-DE')}
+        </span>`
+        }
         </div>
         `;
     }

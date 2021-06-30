@@ -44,10 +44,21 @@ class SellItem extends HTMLElement {
     connectedCallback() {
         this.shadowRoot.querySelector('.image').innerHTML = this.image
         this.shadowRoot.querySelector('.item-name').innerHTML = this.attrName
-        this.shadowRoot.querySelector('.discount-price').innerHTML = `$${(1 - this.discount / 100) * this.price}`
-        this.shadowRoot.querySelector('.price').innerHTML = `$${this.price}`
-        this.shadowRoot.querySelector('.discount').innerHTML = `-${this.discount}%`
+        if (this.discount > 0) {
+            this.shadowRoot.querySelector(".label").innerHTML = `Normal: `;
+            this.shadowRoot.querySelector('.price').innerHTML = `$${this.price}`
+            this.shadowRoot.querySelector('.discount').innerHTML = `-${this.discount}%`
+            this.shadowRoot.querySelector('.discount-price').innerHTML = `$${(1 - this.discount / 100) * this.price}`
+            this.shadowRoot.querySelector(".discount").style.backgroundColor = "magenta";
+        } else {
+            this.shadowRoot.querySelector(".label").innerHTML = ``;
+            this.shadowRoot.querySelector('.discount').innerHTML = ``
+            this.shadowRoot.querySelector(".discount").style.backgroundColor = "white";
+            this.shadowRoot.querySelector('.price').innerHTML = ``
+            this.shadowRoot.querySelector('.discount-price').innerHTML = `$${this.price}`
+        }
     }
+    
     attributeChangedCallback(attr, oldValue, newValue) {
         if (attr == 'item_name') {
             this.attrName = newValue
@@ -61,7 +72,19 @@ class SellItem extends HTMLElement {
 
         else if (attr == 'discount') {
             this.discount = newValue
-            this.shadowRoot.querySelector('.discount').innerHTML = this.discount
+            if (this.discount > 0) {
+                this.shadowRoot.querySelector(".label").innerHTML = `Normal: `;
+                this.shadowRoot.querySelector('.price').innerHTML = `$${this.price}`
+                this.shadowRoot.querySelector('.discount').innerHTML = `-${this.discount}%`
+                this.shadowRoot.querySelector('.discount-price').innerHTML = `$${(1 - this.discount / 100) * this.price}`
+                this.shadowRoot.querySelector(".discount").style.backgroundColor = "magenta";
+            } else {
+                this.shadowRoot.querySelector(".label").innerHTML = ``;
+                this.shadowRoot.querySelector('.discount').innerHTML = ``
+                this.shadowRoot.querySelector(".discount").style.backgroundColor = "white";
+                this.shadowRoot.querySelector('.price').innerHTML = ``
+                this.shadowRoot.querySelector('.discount-price').innerHTML = `$${this.price}`
+            }
         }
         else if (attr == 'image') {
             this.image = newValue
